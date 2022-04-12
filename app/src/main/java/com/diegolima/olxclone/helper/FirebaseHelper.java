@@ -38,4 +38,20 @@ public class FirebaseHelper {
 	public static boolean getAutenticado(){
 		return getAuth().getCurrentUser() != null;
 	}
+
+	public static String validaErros(String erro){
+		String mensagem = "";
+		if (erro.contains("There is no user record corresponding to this identifier")) {
+			mensagem = "Nenhuma conta encontrada com este e-mail.";
+		} else if (erro.contains("The email address is badly formatted")) {
+			mensagem = "Insira um e-mail válido.";
+		} else if (erro.contains("The password is invalid or the user does not have a password")) {
+			mensagem = "Senha inválida, tente novamente.";
+		}else if (erro.contains("The email address is already in use by another account")){
+			mensagem = "Este e-mail já está em uso.";
+		}else if (erro.contains("Password should be at least 6 characters")){
+			mensagem = "Insira uma senha com no mínimo 6 caracteres.";
+		}
+		return mensagem;
+	}
 }

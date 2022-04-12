@@ -7,7 +7,7 @@
     android:layout_height="?actionBarSize">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ib_voltar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/toolbar"
+        android:id="@+id/text_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

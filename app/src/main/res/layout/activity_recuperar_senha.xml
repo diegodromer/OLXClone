@@ -57,6 +57,7 @@
 
             <android.widget.Button
                 android:layout_width="match_parent"
+                android:onClick="validaDados"
                 android:layout_height="wrap_content"
                 android:text="Recuperar senha"
                 android:textColor="@android:color/white"

@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OLXClone">
         <activity
-            android:name=".MainActivity"
+            android:name=".autenticacao.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".autenticacao.LoginActivity"
+            android:name=".autenticacao.RecuperarSenhaActivity"
             android:exported="false" />
         <activity
             android:name=".autenticacao.CriarContaActivity"
             android:exported="false"/>
         <activity
-            android:name=".autenticacao.RecuperarSenhaActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

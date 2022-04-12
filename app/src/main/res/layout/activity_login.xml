@@ -31,6 +31,7 @@
             <EditText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
+                android:inputType="textEmailAddress"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_edt"
                 android:drawableStart="@drawable/ic_email"
@@ -43,6 +44,7 @@
                 android:drawableStart="@drawable/ic_senha"
                 android:drawablePadding="8dp"
                 android:layout_width="match_parent"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_edt"
@@ -54,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_btn"
+                android:onClick="validaDados"
                 android:text="Entrar"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
@@ -69,6 +72,7 @@
                     android:id="@+id/text_cadastrar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="criarConta"
                     android:layout_weight="1"
                     android:text="Cadastre-se"
                     android:textColor="@color/cor_roxa" />
@@ -78,6 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="recuperarSenha"
                     android:text="Esqueceu a senha"
                     android:textAlignment="textEnd"
                     android:textColor="@color/cor_roxa" />

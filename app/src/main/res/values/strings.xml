@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">OLX Clone</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_meus_anuncios">Meus Anúncios</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_conta">Conta</string>
 </resources>
