@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.diegolima.olxclone"
-        minSdk 17
+        minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -46,8 +46,35 @@ dependencies {
     //Realtime Database
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.4.2'
-    implementation 'androidx.navigation:navigation-ui:2.4.2'
+
+    //Storage -> neste caso, para armazenar imagens
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
+
+    //Máscara para tipos de caracteres
+    //https://github.com/santalu/maskara
+    implementation 'com.github.santalu:maskara:1.0.0'
+
+    //Lible de dependencia
+    //https://github.com/ParkSangGwon/TedPermission
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+
+    //Picasso -> carregar imagem da internet
+    //https://github.com/square/picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //mascara de valores
+    //https://github.com/BlacKCaT27/CurrencyEditText
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+    //requisicao web
+    //https://square.github.io/retrofit/
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //swipeable recyclerview
+    //https://github.com/tsuryo/Swipeable-RecyclerView
+    implementation 'com.github.tsuryo:Swipeable-RecyclerView:1.1'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

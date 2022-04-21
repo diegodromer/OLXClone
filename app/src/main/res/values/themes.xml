@@ -17,4 +17,12 @@
     <style name="ProgressBar" parent="Theme.OLXClone">
         <item name="colorAccent">@color/cor_roxa</item>
     </style>
+    
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyleWrapper</item>
+    </style>
+    
+    <style name="BottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

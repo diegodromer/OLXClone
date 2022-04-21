@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable-v24/ic_camera2.xml" value="0.1785" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.101" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/bg_bottom_sheet.xml" value="0.1785" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/bg_btn.xml" value="0.1645" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/bg_edt.xml" value="0.1645" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_agro_e_industria.xml" value="0.141" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_anuncio_off.xml" value="0.1" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_anuncio_on.xml" value="0.1" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_camera.xml" value="0.1" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_close.xml" value="0.1785" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_comercio_e_escritorio.xml" value="0.1785" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_favorito_off.xml" value="0.1" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_favorito_on.xml" value="0.1" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_home_off.xml" value="0.1" />
@@ -15,6 +21,7 @@
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_password.xml" value="0.101" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_telefone.xml" value="0.1645" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_todas_as_categorias.xml" value="0.311" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_user.xml" value="0.1645" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_user_off.xml" value="0.1" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/ic_user_on.xml" value="0.1" />
@@ -24,14 +31,24 @@
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/menu_item_home.xml" value="0.1" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/menu_item_meus_anuncios.xml" value="0.1" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/drawable/menu_item_minha_conta.xml" value="0.1" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_categorias.xml" value="0.19202898550724637" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_criar_conta.xml" value="0.25" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_endereco.xml" value="0.25" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_form_anuncio.xml" value="0.25" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_main.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_perfil.xml" value="0.23425925925925925" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/activity_recuperar_senha.xml" value="0.25" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/anuncio_item.xml" value="0.33" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/categoria_item.xml" value="0.33" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/divisor.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/fragment_home.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/fragment_meus_anuncios.xml" value="0.2359375" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/fragment_minha_conta.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/layout_bottom_sheet.xml" value="0.287962962962963" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/layout/toolbar.xml" value="0.33" />
         <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2140625" />
+        <entry key="..\:/Users/diego/AndroidStudioProjects/OLXClone/app/src/main/res/xml/file_paths.xml" value="0.2515625" />
       </map>
     </option>
   </component>

@@ -82,7 +82,7 @@ public class CriarContaActivity extends AppCompatActivity {
 					if (task.isSuccessful()){
 						String id = task.getResult().getUser().getUid();
 						usuario.setId(id);
-						usuario.salvar();
+						usuario.salvar(progressBar, getBaseContext());
 
 						startActivity(new Intent(this, MainActivity.class));
 						finish();

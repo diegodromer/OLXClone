@@ -1,5 +1,10 @@
 package com.diegolima.olxclone.model;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import com.diegolima.olxclone.helper.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
@@ -11,16 +16,24 @@ public class Usuario {
 	private String email;
 	private String telefone;
 	private String senha;
-
+	private String imagemPerfil;
 	public Usuario() {
 
 	}
 
-	public void salvar() {
+	public void salvar(ProgressBar progressBar, Context context) {
 		DatabaseReference referenceRef = FirebaseHelper.getDatabaseReference();
 		referenceRef.child("usuarios")
 				.child(this.getId())
-				.setValue(this);
+				.setValue(this).addOnCompleteListener(task -> {
+					if (task.isSuccessful()){
+						progressBar.setVisibility(View.GONE);
+						Toast.makeText(context, "Imagem salva com sucesso!", Toast.LENGTH_SHORT).show();
+					}else{
+						Toast.makeText(context, "Erro de upload, tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
+					}
+					progressBar.setVisibility(View.GONE);
+		});
 	}
 
 	public String getId() {
@@ -37,6 +50,14 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getImagemPerfil() {
+		return imagemPerfil;
+	}
+
+	public void setImagemPerfil(String imagemPerfil) {
+		this.imagemPerfil = imagemPerfil;
 	}
 
 	public String getEmail() {
