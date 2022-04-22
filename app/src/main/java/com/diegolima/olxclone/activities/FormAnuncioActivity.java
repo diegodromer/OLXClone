@@ -29,6 +29,7 @@ import com.blackcat.currencyedittext.CurrencyEditText;
 import com.diegolima.olxclone.R;
 import com.diegolima.olxclone.api.CEPService;
 import com.diegolima.olxclone.helper.FirebaseHelper;
+import com.diegolima.olxclone.helper.GetMask;
 import com.diegolima.olxclone.model.Anuncio;
 import com.diegolima.olxclone.model.Categoria;
 import com.diegolima.olxclone.model.Endereco;
@@ -44,6 +45,7 @@ import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 import com.santalu.maskara.widget.MaskEditText;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,7 +78,7 @@ public class FormAnuncioActivity extends AppCompatActivity {
 	private MaskEditText edt_cep;
 	private ProgressBar progressBar;
 	private TextView txt_local;
-
+	private TextView text_toolbar;
 	private Endereco enderecoUsuario;
 	private Local local;
 
@@ -93,9 +95,35 @@ public class FormAnuncioActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_form_anuncio);
 		iniciaComponentes();
+
+		Bundle bundle = getIntent().getExtras();
+		if (bundle != null){
+			anuncio = (Anuncio) bundle.getSerializable("anuncioSelecionado");
+
+			configDados();
+		}
+
 		iniciaRetrofit();
 		recuperaEndereco();
 		configCliques();
+	}
+
+	private void configDados() {
+		text_toolbar.setText("Editando Anúncio");
+
+		categoriaSelecionada = anuncio.getCategoria();
+		btn_categoria.setText(categoriaSelecionada);
+
+		edt_titulo.setText(anuncio.getTitulo());
+		edt_valor.setText(GetMask.getValor(anuncio.getValor()));
+
+		edt_descricao.setText(anuncio.getDescricao());
+
+		Picasso.get().load(anuncio.getUrlImagens().get(0)).into(imagem0);
+		Picasso.get().load(anuncio.getUrlImagens().get(1)).into(imagem1);
+		Picasso.get().load(anuncio.getUrlImagens().get(2)).into(imagem2);
+
+		novoAnuncio = false;
 	}
 
 	public void validaDados(View view) {
@@ -126,6 +154,14 @@ public class FormAnuncioActivity extends AppCompatActivity {
 										}
 									} else {
 										Toast.makeText(this, "Selecione 3 imagens para o aníncio.", Toast.LENGTH_SHORT).show();
+									}
+								}else { //Edição
+									if (imagemList.size() > 0){
+										for (int i = 0; i < imagemList.size(); i++) {
+											salvarImagemFirebase(imagemList.get(i), i);
+										}
+									}else{
+										anuncio.salvar(this, false);
 									}
 								}
 							} else {
@@ -168,7 +204,7 @@ public class FormAnuncioActivity extends AppCompatActivity {
 			}
 
 			if (imagemList.size() == index + 1){
-				anuncio.salvar(novoAnuncio);
+				anuncio.salvar(this, novoAnuncio);
 			}
 		})).addOnFailureListener(e -> Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show());
 	}
@@ -444,8 +480,8 @@ public class FormAnuncioActivity extends AppCompatActivity {
 	}
 
 	private void iniciaComponentes() {
-		TextView text_view = findViewById(R.id.text_toolbar);
-		text_view.setText("Novo Anúncio");
+		text_toolbar = findViewById(R.id.text_toolbar);
+		text_toolbar.setText("Novo Anúncio");
 
 
 		imagem0 = findViewById(R.id.imagem0);

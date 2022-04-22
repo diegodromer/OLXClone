@@ -1,5 +1,7 @@
 package com.diegolima.olxclone.fragments;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.diegolima.olxclone.R;
+import com.diegolima.olxclone.activities.FormAnuncioActivity;
 import com.diegolima.olxclone.adapter.AdapterAnuncio;
 import com.diegolima.olxclone.helper.FirebaseHelper;
 import com.diegolima.olxclone.model.Anuncio;
@@ -21,8 +24,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.tsuryo.swipeablerv.SwipeLeftRightCallback;
 import com.tsuryo.swipeablerv.SwipeableRecyclerView;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,9 +36,12 @@ public class MeusAnunciosFragment extends Fragment implements AdapterAnuncio.OnC
 
 	private AdapterAnuncio adapterAnuncio;
 	private List<Anuncio> anuncioList = new ArrayList<>();
+
 	private SwipeableRecyclerView rv_anuncios;
+
 	private ProgressBar progressBar;
 	private TextView text_info;
+
 	private Button btn_logar;
 
 	@Override
@@ -62,6 +70,7 @@ public class MeusAnunciosFragment extends Fragment implements AdapterAnuncio.OnC
 				@Override
 				public void onDataChange(@NonNull DataSnapshot snapshot) {
 					if (snapshot.exists()){
+						anuncioList.clear();
 						for (DataSnapshot ds : snapshot.getChildren()){ // getChildren -> para percorrer todos anuncios do nó
 							Anuncio anuncio = ds.getValue(Anuncio.class);
 							anuncioList.add(anuncio);
@@ -92,6 +101,55 @@ public class MeusAnunciosFragment extends Fragment implements AdapterAnuncio.OnC
 		rv_anuncios.setHasFixedSize(true);
 		adapterAnuncio = new AdapterAnuncio(anuncioList, this);
 		rv_anuncios.setAdapter(adapterAnuncio);
+
+		rv_anuncios.setListener(new SwipeLeftRightCallback.Listener() {
+			@Override
+			public void onSwipedLeft(int position) {
+				showDialogDelete(anuncioList.get(position));
+			}
+
+			@Override
+			public void onSwipedRight(int position) {
+				showDialogEdit(anuncioList.get(position));
+			}
+		});
+	}
+
+	private void showDialogEdit(Anuncio anuncio){
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
+		alertDialog.setTitle("Deseja editar o anúncio ?");
+		alertDialog.setMessage("Clique em sim p/ Editar ou em fechar");
+		alertDialog.setNegativeButton("Fechar", ((dialog, whitch) -> {
+			dialog.dismiss();
+			adapterAnuncio.notifyDataSetChanged();
+		})).setPositiveButton("Sim", ((dialog, whitch) -> {
+			Intent intent = new Intent(requireContext(), FormAnuncioActivity.class);
+			intent.putExtra("anuncioSelecionado", anuncio);
+			startActivity(intent);
+
+			adapterAnuncio.notifyDataSetChanged();
+		}));
+
+		AlertDialog dialog = alertDialog.create();
+		dialog.show();
+	}
+
+	private void showDialogDelete(Anuncio anuncio){
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
+		alertDialog.setTitle("Deseja remover o anúncio ?");
+		alertDialog.setMessage("Clique em sim p/ Remover ou em Fechar");
+		alertDialog.setNegativeButton("Fechar", ((dialog, whitch) -> {
+			dialog.dismiss();
+			adapterAnuncio.notifyDataSetChanged();
+		})).setPositiveButton("Sim", ((dialog, whitch) -> {
+			anuncioList.remove(anuncio);
+			anuncio.remover();
+
+			adapterAnuncio.notifyDataSetChanged();
+		}));
+
+		AlertDialog dialog = alertDialog.create();
+		dialog.show();
 	}
 
 	private void iniciaComponentes(View view){

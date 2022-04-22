@@ -17,6 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OLXClone">
         <activity
+            android:name=".activities.FiltrosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.RegioesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EstadosActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.CategoriasActivity"
             android:exported="false" />
         <activity
@@ -57,4 +66,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
 </manifest>

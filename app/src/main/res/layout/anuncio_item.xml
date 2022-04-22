@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:cardElevation="5dp"
@@ -65,7 +66,6 @@
                 app:layout_constraintStart_toStartOf="@+id/text_titulo"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textSize="16sp"
                 tools:text="Vitória, Centro - DDD 27" />
          </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

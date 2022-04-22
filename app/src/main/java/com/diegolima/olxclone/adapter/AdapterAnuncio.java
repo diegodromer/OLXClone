@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.diegolima.olxclone.R;
+import com.diegolima.olxclone.helper.GetMask;
 import com.diegolima.olxclone.model.Anuncio;
 import com.squareup.picasso.Picasso;
 
@@ -38,8 +39,10 @@ public class AdapterAnuncio extends RecyclerView.Adapter<AdapterAnuncio.MyViewHo
 
 		Picasso.get().load(anuncio.getUrlImagens().get(0)).into(holder.img_anuncio);
 		holder.text_titulo.setText(anuncio.getTitulo());
-		//holder.text_valor.setText(anuncio.getValor());
-		holder.text_local.setText(anuncio.getLocal().getLocalidade() + ", " + anuncio.getLocal().getBairro() +" - DDD " + anuncio.getLocal().getDdd());
+		holder.text_valor.setText("R$ " + GetMask.getValor(anuncio.getValor()));
+		holder.text_local.setText(GetMask.getDate(anuncio.getDataPublicacao(), 4) + ", " + anuncio.getLocal().getLocalidade());
+
+		holder.itemView.setOnClickListener(view -> onClickListener.OnClick(anuncio));
 	}
 
 	@Override

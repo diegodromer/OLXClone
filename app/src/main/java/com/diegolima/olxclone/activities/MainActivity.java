@@ -20,5 +20,10 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
+
+        int id = getIntent().getIntExtra("id", 0);
+        if (id == 2){
+            navView.setSelectedItemId(R.id.menu_meus_anuncios);
+        }
     }
 }

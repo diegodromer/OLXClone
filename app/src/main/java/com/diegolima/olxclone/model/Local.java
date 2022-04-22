@@ -1,6 +1,8 @@
 package com.diegolima.olxclone.model;
 
-public class Local {
+import java.io.Serializable;
+
+public class Local implements Serializable {
 
 	private String cep;
 	private String bairro;

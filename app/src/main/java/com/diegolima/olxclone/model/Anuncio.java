@@ -1,13 +1,21 @@
 package com.diegolima.olxclone.model;
 
+import android.app.Activity;
+import android.content.Intent;
+
+import androidx.activity.ActivityViewModelLazyKt;
+
+import com.diegolima.olxclone.activities.MainActivity;
 import com.diegolima.olxclone.helper.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Anuncio {
+public class Anuncio implements Serializable {
 	private String id;
 	private String idUsuario;
 	private String titulo;
@@ -23,7 +31,7 @@ public class Anuncio {
 		this.setId(anuncioRef.push().getKey());
 	}
 
-	public void salvar(boolean novoAnuncio){
+	public void salvar(Activity activity , boolean novoAnuncio){
 		DatabaseReference anuncioPublicoRef = FirebaseHelper.getDatabaseReference()
 				.child("anuncios_publicos")
 				.child(this.getId());
@@ -42,7 +50,37 @@ public class Anuncio {
 
 			DatabaseReference dataMeusAnuncio = meusAnunciosRef
 					.child("dataPublicacao");
-			dataMeusAnuncio.setValue(ServerValue.TIMESTAMP);
+			dataMeusAnuncio.setValue(ServerValue.TIMESTAMP).addOnCompleteListener(task -> {
+				activity.finish();
+				Intent intent = new Intent(activity, MainActivity.class);
+				intent.putExtra("id", 2);
+				activity.startActivity(intent);
+			});
+		}else{
+			activity.finish();
+		}
+	}
+
+	public void remover(){
+		DatabaseReference anuncioPublicoRef = FirebaseHelper.getDatabaseReference()
+				.child("anuncios_publicos")
+				.child(this.getId());
+		anuncioPublicoRef.removeValue();
+
+		DatabaseReference meusAnunciosRef = FirebaseHelper.getDatabaseReference()
+				.child("meus_anuncios")
+				.child(FirebaseHelper.getIdFirebase())
+				.child(this.getId());
+		meusAnunciosRef.removeValue();
+
+		for (int i = 0; i < getUrlImagens().size(); i++) {
+			StorageReference storageReference = FirebaseHelper.getStorageReference()
+					.child("imagens")
+					.child("anuncios")
+					.child(getId())
+					.child("imagens" + i + ".jpeg");
+
+			storageReference.delete();
 		}
 	}
 
