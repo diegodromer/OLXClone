@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OLXClone">
         <activity
+            android:name=".activities.DetalhesAnuncioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.FiltrosActivity"
             android:exported="false" />
         <activity
@@ -47,7 +53,7 @@
             android:name=".autenticacao.CriarContaActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -38,7 +38,6 @@ public class MeusAnunciosFragment extends Fragment implements AdapterAnuncio.OnC
 	private List<Anuncio> anuncioList = new ArrayList<>();
 
 	private SwipeableRecyclerView rv_anuncios;
-
 	private ProgressBar progressBar;
 	private TextView text_info;
 

@@ -3,7 +3,6 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-
     }
 }
 dependencyResolutionManagement {
@@ -16,3 +15,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "OLX Clone"
 include ':app'
+include ':autoimageslider'

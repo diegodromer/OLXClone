@@ -22,6 +22,7 @@ import androidx.appcompat.widget.SearchView;
 
 import com.diegolima.olxclone.R;
 import com.diegolima.olxclone.activities.CategoriasActivity;
+import com.diegolima.olxclone.activities.DetalhesAnuncioActivity;
 import com.diegolima.olxclone.activities.EstadosActivity;
 import com.diegolima.olxclone.activities.FiltrosActivity;
 import com.diegolima.olxclone.activities.FormAnuncioActivity;
@@ -273,7 +274,9 @@ public class HomeFragment extends Fragment implements AdapterAnuncio.OnClickList
 
 	@Override
 	public void OnClick(Anuncio anuncio) {
-		Toast.makeText(requireContext(), anuncio.getTitulo(), Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(requireContext(), DetalhesAnuncioActivity.class);
+		intent.putExtra("anuncioSelecionado", anuncio);
+		startActivity(intent);
 	}
 
 	@Override

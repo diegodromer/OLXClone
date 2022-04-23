@@ -5,4 +5,7 @@
     <string name="menu_meus_anuncios">Meus Anúncios</string>
     <string name="menu_favoritos">Favoritos</string>
     <string name="menu_conta">Conta</string>
+
+    <string name="valor_anuncio">R$ %1$s</string>
+    <string name="data_publicacao">Publicado em %1$s</string>
 </resources>
