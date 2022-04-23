@@ -17,10 +17,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.santalu.maskara.widget.MaskEditText;
 
 public class EnderecoActivity extends AppCompatActivity {
 
-	private EditText edt_cep;
+	private MaskEditText edt_cep;
 	private EditText edt_uf;
 	private EditText edt_municipio;
 	private EditText edt_bairro;
@@ -34,41 +35,51 @@ public class EnderecoActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_endereco);
 		iniciaComponentes();
 		recuperaEndereco();
+		configCliques();
+	}
+
+	private void configCliques(){
+		findViewById(R.id.ib_voltar).setOnClickListener(v -> finish());
 	}
 
 	public void validaDados(View view) {
-		String cep = edt_cep.getText().toString();
+		String cep = edt_cep.getMasked();
 		String uf = edt_uf.getText().toString();
 		String municipio = edt_municipio.getText().toString();
 		String bairro = edt_bairro.getText().toString();
 
 		if (!cep.isEmpty()) {
-			if (!uf.isEmpty()) {
-				if (!municipio.isEmpty()) {
-					if (!bairro.isEmpty()) {
-						progressBar.setVisibility(View.VISIBLE);
+			if (cep.length() == 9){
+				if (!uf.isEmpty()) {
+					if (!municipio.isEmpty()) {
+						if (!bairro.isEmpty()) {
+							progressBar.setVisibility(View.VISIBLE);
 
-						if (endereco == null){
-							endereco = new Endereco();
+							if (endereco == null){
+								endereco = new Endereco();
+							}
+
+							Endereco endereco = new Endereco();
+							endereco.setCep(cep);
+							endereco.setUf(uf);
+							endereco.setMunicipio(municipio);
+							endereco.setBairro(bairro);
+							endereco.salvar(FirebaseHelper.getIdFirebase(),getBaseContext(), progressBar);
+						} else {
+							edt_bairro.requestFocus();
+							edt_bairro.setError("Preencha o bairro.");
 						}
-
-						Endereco endereco = new Endereco();
-						endereco.setCep(cep);
-						endereco.setUf(uf);
-						endereco.setMunicipio(municipio);
-						endereco.setBairro(bairro);
-						endereco.salvar(FirebaseHelper.getIdFirebase(),getBaseContext(), progressBar);
 					} else {
-						edt_bairro.requestFocus();
-						edt_bairro.setError("Preencha o bairro.");
+						edt_municipio.requestFocus();
+						edt_municipio.setError("Preencha o município.");
 					}
 				} else {
-					edt_municipio.requestFocus();
-					edt_municipio.setError("Preencha o município.");
+					edt_uf.requestFocus();
+					edt_uf.setError("Preencha o UF.");
 				}
-			} else {
-				edt_uf.requestFocus();
-				edt_uf.setError("Preencha o UF.");
+			}else{
+				edt_cep.requestFocus();
+				edt_cep.setError("Informe um CEP válido.");
 			}
 		} else {
 			edt_cep.requestFocus();

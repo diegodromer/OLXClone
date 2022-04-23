@@ -100,7 +100,7 @@ public class PerfilActivity extends AppCompatActivity {
 
 		progressBar.setVisibility(View.GONE);
 
-		if (usuario.getImagemPerfil() != null){
+		if (usuario.getImagemPerfil() != null) {
 			Picasso.get().load(usuario.getImagemPerfil()).into(imagem_perfil);
 		}
 
@@ -116,11 +116,12 @@ public class PerfilActivity extends AppCompatActivity {
 
 					progressBar.setVisibility(View.VISIBLE);
 
-					if (caminhoImagem != null){
+					if (caminhoImagem != null) {
 						salvarImagemPerfil();
-					}else{
+					} else {
 						usuario.salvar(progressBar, getBaseContext());
 					}
+
 				} else {
 					edt_telefone.requestFocus();
 					edt_telefone.setError("Telefone inválido.");
@@ -134,6 +135,7 @@ public class PerfilActivity extends AppCompatActivity {
 
 	private void configCliques() {
 		imagem_perfil.setOnClickListener(v -> verificaPermissaoGaleria());
+		findViewById(R.id.ib_voltar).setOnClickListener(v -> finish());
 	}
 
 	private void verificaPermissaoGaleria() {

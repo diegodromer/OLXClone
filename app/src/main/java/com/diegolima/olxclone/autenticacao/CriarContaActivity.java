@@ -14,12 +14,13 @@ import com.diegolima.olxclone.activities.MainActivity;
 import com.diegolima.olxclone.R;
 import com.diegolima.olxclone.helper.FirebaseHelper;
 import com.diegolima.olxclone.model.Usuario;
+import com.santalu.maskara.widget.MaskEditText;
 
 public class CriarContaActivity extends AppCompatActivity {
 
 	private EditText edt_nome;
 	private EditText edt_email;
-	private EditText edt_telefone;
+	private MaskEditText edt_telefone;
 	private EditText edt_senha;
 	private ProgressBar progressBar;
 
@@ -40,38 +41,43 @@ public class CriarContaActivity extends AppCompatActivity {
 	public void validaDados(View view) {
 		String nome = edt_nome.getText().toString();
 		String email = edt_email.getText().toString();
-		String telefone = edt_telefone.getText().toString();
+		String telefone = edt_telefone.getUnMasked();
 		String senha = edt_senha.getText().toString();
 
 		if (!nome.isEmpty()) {
 			if (!email.isEmpty()) {
-				if (!telefone.isEmpty()) {
-					if (!senha.isEmpty()) {
+				if (!telefone.isEmpty()){
+					if (telefone.length() == 11) {
+						if (!senha.isEmpty()) {
 
-						progressBar.setVisibility(View.VISIBLE);
+							progressBar.setVisibility(View.VISIBLE);
 
-						Usuario usuario = new Usuario();
-						usuario.setNome(nome);
-						usuario.setEmail(email);
-						usuario.setTelefone(telefone);
-						usuario.setSenha(senha);
+							Usuario usuario = new Usuario();
+							usuario.setNome(nome);
+							usuario.setEmail(email);
+							usuario.setTelefone(telefone);
+							usuario.setSenha(senha);
 
-						cadastrarUsuario(usuario);
+							cadastrarUsuario(usuario);
+						} else {
+							edt_senha.requestFocus();
+							edt_senha.setError("Preencha sua senha.");
+						}
 					} else {
-						edt_nome.requestFocus();
-						edt_nome.setError("Preencha sua senha");
+						edt_telefone.requestFocus();
+						edt_telefone.setError("Preencha um telefone válido.");
 					}
-				} else {
-					edt_nome.requestFocus();
-					edt_nome.setError("Preencha seu telefone");
+				}else{
+					edt_telefone.requestFocus();
+					edt_telefone.setError("Informe um telefone.");
 				}
 			} else {
-				edt_nome.requestFocus();
-				edt_nome.setError("Preencha seu email");
+				edt_email.requestFocus();
+				edt_email.setError("Preencha seu email.");
 			}
 		} else {
 			edt_nome.requestFocus();
-			edt_nome.setError("Preencha seu nome");
+			edt_nome.setError("Preencha seu nome.");
 		}
 	}
 

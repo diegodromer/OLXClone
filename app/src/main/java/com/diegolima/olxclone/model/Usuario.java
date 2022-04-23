@@ -28,7 +28,7 @@ public class Usuario {
 				.setValue(this).addOnCompleteListener(task -> {
 					if (task.isSuccessful()){
 						progressBar.setVisibility(View.GONE);
-						Toast.makeText(context, "Imagem salva com sucesso!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(context, "Perfil salvo com sucesso!", Toast.LENGTH_SHORT).show();
 					}else{
 						Toast.makeText(context, "Erro de upload, tente novamente mais tarde.", Toast.LENGTH_SHORT).show();
 					}

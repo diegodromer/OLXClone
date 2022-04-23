@@ -70,17 +70,21 @@
                 android:text="Telefone"
                 android:textColor="@color/cor_roxa" />
 
-            <EditText
+            <com.santalu.maskara.widget.MaskEditText
                 android:id="@+id/edt_telefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_edt"
                 android:drawableStart="@drawable/ic_telefone"
                 android:drawablePadding="16dp"
+                android:layout_marginTop="8dp"
+                android:padding="16dp"
+                android:background="@drawable/bg_edt"
                 android:hint="Telefone"
+                android:imeOptions="actionNext"
                 android:inputType="number"
-                android:padding="16dp" />
+                app:mask="(__) _____-____"
+                app:maskCharacter="_"
+                app:maskStyle="completable" />
 
             <TextView
                 android:layout_width="match_parent"

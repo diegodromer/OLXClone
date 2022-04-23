@@ -75,6 +75,7 @@ public class FormAnuncioActivity extends AppCompatActivity {
 	private EditText edt_descricao;
 	private CurrencyEditText edt_valor;
 	private Button btn_categoria;
+	private Button btn_salvar;
 	private MaskEditText edt_cep;
 	private ProgressBar progressBar;
 	private TextView txt_local;
@@ -161,6 +162,7 @@ public class FormAnuncioActivity extends AppCompatActivity {
 											salvarImagemFirebase(imagemList.get(i), i);
 										}
 									}else{
+										btn_salvar.setText("Aguarde...");
 										anuncio.salvar(this, false);
 									}
 								}
@@ -188,6 +190,9 @@ public class FormAnuncioActivity extends AppCompatActivity {
 	}
 
 	private void salvarImagemFirebase(Imagem imagem, int index) {
+
+		btn_salvar.setText("Aguarde...");
+
 		StorageReference storageReference = FirebaseHelper.getStorageReference()
 				.child("imagens")
 				.child("anuncios")
@@ -210,6 +215,7 @@ public class FormAnuncioActivity extends AppCompatActivity {
 	}
 
 	private void configCliques() {
+		findViewById(R.id.ib_voltar).setOnClickListener(v -> finish());
 		imagem0.setOnClickListener(v -> showBottomDialog(0));
 		imagem1.setOnClickListener(v -> showBottomDialog(1));
 		imagem2.setOnClickListener(v -> showBottomDialog(2));
@@ -275,9 +281,14 @@ public class FormAnuncioActivity extends AppCompatActivity {
 		enderecoRef.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 			public void onDataChange(@NonNull DataSnapshot snapshot) {
-				enderecoUsuario = snapshot.getValue(Endereco.class);
-				edt_cep.setText(enderecoUsuario.getCep());
-				progressBar.setVisibility(View.GONE);
+				if (snapshot.exists()){
+					enderecoUsuario = snapshot.getValue(Endereco.class);
+					edt_cep.setText(enderecoUsuario.getCep());
+					progressBar.setVisibility(View.GONE);
+				}else{
+					finish();
+					startActivity(new Intent(getBaseContext(), EnderecoActivity.class));
+				}
 			}
 
 			@Override
@@ -497,6 +508,7 @@ public class FormAnuncioActivity extends AppCompatActivity {
 		edt_cep = findViewById(R.id.edt_cep);
 		progressBar = findViewById(R.id.progressBar);
 		txt_local = findViewById(R.id.txt_local);
+		btn_salvar = findViewById(R.id.btn_salvar);
 	}
 
 	@Override
